@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Important Presentation</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #fff5cc;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    padding: 40px;
+  }
+
+  .slide {
+    display: none;
+  }
+
+  .active {
+    display: block;
+  }
+
+  button {
+    padding: 12px 20px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  .next-btn {
+    background-color: #f7c948;
+  }
+
+  #yesBtn {
+    background-color: #ff6b81;
+    color: white;
+    font-size: 18px;
+  }
+
+  #noBtn {
+    background-color: #ccc;
+  }
+
+  img {
+    max-width: 250px;
+    border-radius: 15px;
+    margin-top: 20px;
+  }
+
+  h1 {
+    color: #7a5c00;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+ <!-- INTRO -->
+<div class="slide active">
+  <h1>Reasons why I should be your gf 💛</h1>
+  <img src="intro.jpg">
+  <button class="next-btn" onclick="nextSlide()">Continue</button>
+</div>
+
+<div class="slide">
+  <h1>I'm gay, you gay, we can be gay together</h1>
+  <img src="slide 1 (u gay Im gay).jpg">
+  <button class="next-btn" onclick="nextSlide()">Next</button>
+</div>
+
+<div class="slide">
+  <h1>i like you, you like me, very gay</h1>
+  <img src="slide 2 i like u u like me.jpg">
+  <button class="next-btn" onclick="nextSlide()">Next</button>
+</div>
+
+<div class="slide">
+  <h1>I'm very nice :3</h1>
+  <img src="slide 3 im very nice.jpg">
+  <button class="next-btn" onclick="nextSlide()">Next</button>
+</div>
+
+<div class="slide">
+  <h1>A lil weirdo so its never boring</h1>
+  <img src="slide 4 Im a lil weirdo so its never boring.gif">
+  <button class="next-btn" onclick="nextSlide()">Next</button>
+</div>
+
+<div class="slide">
+  <h1>Im loyal like a dawg, just gimme food</h1>
+  <img src="slide 5 im loyal like a dawg.jpg">
+  <button class="next-btn" onclick="nextSlide()">Next</button>
+</div>
+
+<div class="slide">
+  <h1>I may not be a 10 but I'd learn anything for you 💛</h1>
+  <img src="slide 6 I may not be a 10.jpg">
+  <button class="next-btn" onclick="nextSlide()">Next</button>
+</div>
+
+  <!-- FINAL QUESTION -->
+  <div class="slide">
+    <h1 id="question">Will you be my gf?</h1>
+
+    <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
+    <button id="noBtn" onclick="noClicked()">No</button>
+  </div>
+
+  <!-- RESULT -->
+  <div class="slide">
+    <h1>YIPEEEEEEE 🎉</h1>
+    <h2>You have acquired a gf 💛</h2>
+    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+  </div>
+
+</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll(".slide");
+
+  function nextSlide() {
+    slides[currentSlide].classList.remove("active");
+    currentSlide++;
+    slides[currentSlide].classList.add("active");
+  }
+
+  let noCount = 0;
+
+  function noClicked() {
+    noCount++;
+
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const question = document.getElementById("question");
+
+    // Make YES bigger
+    let size = 18 + (noCount * 8);
+    yesBtn.style.fontSize = size + "px";
+
+    const texts = [
+      "Pleaseeee 🥺",
+      "pretty pleeaseee",
+      "COME ONNN 😭",
+      "you know you want to",
+      "don’t do me like this 😔"
+    ];
+
+    question.innerText = texts[noCount % texts.length];
+
+    // At 3rd click → activate dodge mode
+    if (noCount >= 3) {
+      noBtn.onmouseover = function() {
+        moveButton(noBtn);
+      };
+    }
+  }
+
+  function moveButton(button) {
+    const x = Math.random() * (window.innerWidth - button.offsetWidth);
+    const y = Math.random() * (window.innerHeight - button.offsetHeight);
+
+    button.style.position = "absolute";
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+  }
+
+  function yesClicked() {
+    slides[currentSlide].classList.remove("active");
+    currentSlide++;
+    slides[currentSlide].classList.add("active");
+  }
+</script>
+</body>
+</html>
